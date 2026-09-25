@@ -1,0 +1,20 @@
+[project]
+name = "fraud-risk-service"
+version = "0.1.0"
+description = "Fraud risk scoring model training + inference service"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.uv]
+package = false

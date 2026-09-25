@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: fraud-risk-service
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  host: fraud-risk.internal.example.com
+  tls:
+    enabled: true
+    secretName: fraud-risk-tls
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+# Credentials the service needs at runtime. Values here are rendered directly
+# into the Deployment's env vars below.
+config:
+  apiKey: "sk_live_51Hc9f2KZ8mQwErTyUiOpAsDf_FaKe_SeCrEt"
+  databaseUrl: "postgres://fraud_svc:Sup3rSecret!@db.internal:5432/fraud_risk_I_want_a_goat_farm"
